@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8"/>
+  <title>Thai News Summarizer + NER</title>
+  <style>
+    body{font-family:system-ui,th,sans-serif;max-width:900px;margin:40px auto;padding:0 16px;line-height:1.7}
+    input[type=text]{width:100%;padding:10px;border:1px solid #ccc;border-radius:10px}
+    .row{display:flex;gap:12px;align-items:center;margin-top:10px}
+    button{padding:10px 16px;border:none;border-radius:10px;background:#111;color:#fff;cursor:pointer}
+    .hint{color:#666;font-size:0.95em}
+    .error{background:#ffe8e8;border:1px solid #ffb3b3;padding:8px 12px;border-radius:10px;margin-top:10px}
+  </style>
+</head>
+<body>
+  <h2>สรุปข่าว + แยก NER จากลิงก์</h2>
+  <form method="post">
+    <input type="text" name="url" placeholder="วางลิงก์ข่าว เช่น https://www.thairath.co.th/news/..." />
+    <div class="row">
+      <label>จำนวนประโยคสรุป</label>
+      <select name="n_sent">
+        <option>3</option>
+        <option selected>5</option>
+        <option>7</option>
+        <option>9</option>
+      </select>
+      <button type="submit">ประมวลผล</button>
+    </div>
+    <p class="hint">ระบบจะดึงเนื้อหาข่าว → สรุปสั้น ๆ → ไฮไลต์ชื่อคน/หน่วยงาน/สถานที่อัตโนมัติ</p>
+    {% if error %}<div class="error">{{error}}</div>{% endif %}
+  </form>
+</body>
+</html>
